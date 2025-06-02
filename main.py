@@ -60,7 +60,7 @@ def msgFilter():
             alreadySentMsgList.append(msgNum)
 
 def parseMsg(num, msgDirection):
-    msgCmdPipe = os.popen(f"mmcli -s {num}").read().decode()
+    msgCmdPipe = os.popen(f"mmcli -s {num}").read()
     msgSplit = msgCmdPipe.split("-----------------------")
     msgContent = msgSplit[2]
     msgTime = strftime("%Y-%m-%d %H:%M:%S", gmtime())
