@@ -50,11 +50,15 @@ def msgFilter():
             msg = parseMsg(msgNum, msgDirection)
             senderNumber = parseNumber(msgNum)
             messagePARSED = formatMsg(msg, senderNumber, msgDirection)
+            if msgDirection == "received":
+                print(f"MESSAGE RECEIVED FROM {senderNumber}")
+            elif msgDirection == "sent":
+                print(f"MESSAGE SENT TO {senderNumber}")
             mail.sendEmail(messagePARSED)
             alreadySentMsgList.append(msgNum)
 
 def parseMsg(num, msgDirection):
-    msgCmdPipe = os.popen(f"mmcli -s {num}").read()
+    msgCmdPipe = os.popen(f"mmcli -s {num}").read().decode()
     msgSplit = msgCmdPipe.split("-----------------------")
     msgContent = msgSplit[2]
     msgTime = strftime("%Y-%m-%d %H:%M:%S", gmtime())
