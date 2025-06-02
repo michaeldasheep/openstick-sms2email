@@ -70,7 +70,7 @@ def msgFilter():
             alreadySentMsgList.append(msgNum)
 
 def parseMsg(num, msgDirection):
-    msgCmdPipe = cmdLine.execute(["mmcli", "-s", num]).decode()
+    msgCmdPipe = cmdLine.execute(["mmcli", "-s", str(num)]).decode()
     #msgCmdPipe = os.popen(f"mmcli -s {num}").read().decode()
     msgSplit = msgCmdPipe.split("-----------------------")
     msgContent = msgSplit[2]
