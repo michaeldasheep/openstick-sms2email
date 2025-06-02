@@ -54,7 +54,7 @@ def msgFilter():
             alreadySentMsgList.append(msgNum)
 
 def parseMsg(num, msgDirection):
-    msgCmdPipe = os.popen(f"mmcli -s {num}")
+    msgCmdPipe = os.popen(f"mmcli -s {num}").read()
     msgSplit = msgCmdPipe.split("-----------------------")
     msgContent = msgSplit[2]
     msgTime = strftime("%Y-%m-%d %H:%M:%S", gmtime())
@@ -62,7 +62,7 @@ def parseMsg(num, msgDirection):
 {msgContent} \n \n Timestamp: {msgTime} \n This SMS message was {msgDirection} from {config.PHNUM}{config.ADDITIONALMSG}. \n"""
 
 def parseNumber(num):
-    msgCmdPipe = os.popen(f"mmcli -s {num}")
+    msgCmdPipe = os.popen(f"mmcli -s {num}").read()
     msgSplit = msgCmdPipe.splitlines()
     msgNumber = "+" + msgSplit[3].split('+')
     return str(msgNumber)
