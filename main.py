@@ -1,12 +1,14 @@
 #!/usr/bin/python3
 import os
 import mail
+import sys
 from time import gmtime, strftime
 from email.mime.text import MIMEText
 from time import sleep
 import config
 import subprocess
 
+sys.stdout.reconfigure(encoding='utf-8')
 receivedMsg = []
 sentMsg = []
 msgList = []
