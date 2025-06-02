@@ -6,7 +6,6 @@ from time import gmtime, strftime
 from email.mime.text import MIMEText
 from time import sleep
 import config
-import subprocess
 
 sys.stdout.reconfigure(encoding='utf-8')
 receivedMsg = []
@@ -15,17 +14,6 @@ msgList = []
 alreadySentMsgList = []
 
 print(f"KILL PID: {os.getpid()}")
-
-class cmdLine:
-    @staticmethod
-    def execute(commands):
-        process = subprocess.Popen(
-            commands, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        stdout, stderr = process.communicate()
-
-        if (stderr):
-            raise Exception(stderr)
-        return stdout
 
 def mmcliMsgScan():
     modemManagerSMSList = os.popen('mmcli -m 0 --messaging-list-sms') 
@@ -72,11 +60,9 @@ def msgFilter():
             alreadySentMsgList.append(msgNum)
 
 def parseMsg(num, msgDirection):
-    msgCmdPipe = cmdLine.execute(["mmcli", "-s", str(num)]).decode()
-    #msgCmdPipe = os.popen(f"mmcli -s {num}").read().decode()
+    msgCmdPipe = os.popen(f"mmcli -s {num}").read().decode()
     msgSplit = msgCmdPipe.split("-----------------------")
     msgContent = msgSplit[2]
-    print(msgContent.encode())
     msgTime = strftime("%Y-%m-%d %H:%M:%S", gmtime())
     return f"""\
 {msgContent} \n \n Timestamp: {msgTime} \n This SMS message was {msgDirection} from {config.PHNUM}{config.ADDITIONALMSG}. \n"""
