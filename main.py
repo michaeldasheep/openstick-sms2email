@@ -85,7 +85,7 @@ def parseNumber(num):
     return str(msgNumber)
 
 def formatMsg(msg, senderNumber, msgDirection):
-    message = MIMEText(msg.encode('utf-8'), "plain")
+    message = MIMEText(msg, _charset='utf-8', _subtype="plain")
     message['Subject'] = f"Text {msgDirection} from {senderNumber}"
     message["From"] = config.USERNAME
     message['To'] = config.RECIPIENT
