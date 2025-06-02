@@ -72,3 +72,12 @@ def formatMsg(msg, senderNumber, msgDirection):
     message["From"] = config.USERNAME
     message['To'] = config.RECIPIENT
     return message
+
+try:
+    while True:
+        mmcliMsgScan()
+        msgFilter()
+        sleep(10)
+except KeyboardInterrupt:
+    print("Exitting Application")
+    exit()
