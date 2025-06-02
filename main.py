@@ -26,7 +26,7 @@ def mmcliMsgScan():
             msgNum = msgNumGet(line)
             sentMsg.append(msgNum)
             msgList.append(msgNum)
-        else:
+        elif line.endswith(' (unknown)\n'):
             msgNum = msgNumGet(line)
             receivedMsg.append(msgNum)
             msgList.append(msgNum)
