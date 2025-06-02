@@ -65,7 +65,7 @@ def parseMsg(num, msgDirection):
     msgContent = msgSplit[2]
     msgTime = strftime("%Y-%m-%d %H:%M:%S", gmtime())
     return f"""\
-{msgContent} \n \n Timestamp: {msgTime} \n This SMS message was {msgDirection} from {config.PHNUM}{config.ADDITIONALMSG}. \n"""
+{msgContent} \n \n Timestamp: {msgTime} \n This SMS message was {msgDirection} by {config.PHNUM}{config.ADDITIONALMSG}. \n"""
 
 def parseNumber(num):
     msgCmdPipe = os.popen(f"mmcli -s {num}").read()
