@@ -3,6 +3,7 @@ import os
 import mail
 from time import gmtime, strftime
 from email.mime.text import MIMEText
+from time import sleep
 import config
 
 receivedMsg = []
