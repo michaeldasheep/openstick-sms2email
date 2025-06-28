@@ -7,7 +7,6 @@ from email.mime.text import MIMEText
 from time import sleep
 import config
 
-sys.stdout.reconfigure(encoding='utf-8')
 receivedMsg = []
 sentMsg = []
 msgList = []
