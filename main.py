@@ -69,7 +69,7 @@ def parseMsg(num, msgDirection):
 def parseNumber(num):
     msgCmdPipe = os.popen(f"mmcli -s {num}").read()
     msgSplit = msgCmdPipe.splitlines()
-    msgNumber = "+" + msgSplit[3].split('+')[1]
+    msgNumber = "+" + msgSplit[3].split('number: ')[1]
     return str(msgNumber)
 
 def formatMsg(msg, senderNumber, msgDirection):
